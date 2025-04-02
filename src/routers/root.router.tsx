@@ -1,22 +1,26 @@
-import LoadingPage from '@/pages/loading.page'
 import { RouterProvider, createBrowserRouter } from 'react-router'
+
+import HomePage from '@/pages/home.page'
+import LoadingPage from '@/pages/loading.page'
+import RootLayout from '@/components/layout/root-layout'
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    hydrateFallbackElement: <LoadingPage />,
-    lazy: async () => {
-      const { default: HomePage } = await import('@/pages/home.page')
-      return { Component: HomePage }
-    }
-  },
-  {
-    path: '/play',
-    hydrateFallbackElement: <LoadingPage />,
-    lazy: async () => {
-      const { default: PlayPage } = await import('@/pages/play.page')
-      return { Component: PlayPage }
-    }
+    element: <RootLayout />,
+    children: [
+      {
+        path: '/',
+        element: <HomePage />
+      },
+      {
+        path: '/play',
+        hydrateFallbackElement: <LoadingPage />,
+        lazy: async () => {
+          const { default: PlayPage } = await import('@/pages/play.page')
+          return { Component: PlayPage }
+        }
+      }
+    ]
   }
 ])
 

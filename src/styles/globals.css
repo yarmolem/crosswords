@@ -1,3 +1,6 @@
+@import './fonts/dm-sans.css';
+@import './fonts/dm-serif.css';
+
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -26,6 +29,10 @@
   --ring: var(--ring);
   --ring-offset: var(--ring-offset);
 
+  /* font family */
+  --font-body: 'DMSans', sans-serif;
+  --font-heading: 'DMSerif', serif;
+
   /* box shadow */
   --translate-x-box-shadow-x: var(--box-shadow-x);
   --translate-y-box-shadow-y: var(--box-shadow-y);
@@ -53,7 +60,7 @@
   --box-shadow-y: 4px;
   --reverse-box-shadow-x: -4px;
   --reverse-box-shadow-y: -4px;
-  --base-font-weight: 500;
+  --base-font-weight: 400;
   --heading-font-weight: 700;
 
   --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
@@ -74,6 +81,6 @@
 
 @layer base {
   body {
-    @apply bg-bg text-text font-base;
+    @apply bg-bg text-text font-body;
   }
 }

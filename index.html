@@ -6,19 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crosswords</title>
 
+    <link
+      as="font"
+      crossorigin
+      rel="preload"
+      type="font/woff2"
+      href="/fonts/DMSans/DMSans-Regular.woff2"
+    />
+    <link
+      as="font"
+      crossorigin
+      rel="preload"
+      type="font/woff2"
+      href="/fonts/DMSerif/DMSerifDisplay-Regular.woff2"
+    />
+
     <script>
       const getThemePreference = () => {
         if (
           typeof localStorage !== 'undefined' &&
           localStorage.getItem('theme')
         ) {
-          try {
-            const json = localStorage.getItem('theme')
-            return JSON.parse(json)
-          } catch (error) {
-            console.error('Error getting theme preference', error?.message)
-            return null
-          }
+          return localStorage.getItem('theme')
         }
         return window.matchMedia('(prefers-color-scheme: dark)').matches
           ? 'dark'
