@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* main colors */
+  --color-main: var(--main);
+  --color-overlay: var(--overlay);
+  --color-bg: var(--bg);
+  --color-bw: var(--bw);
+  --color-blank: var(--blank);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-mtext: var(--mtext);
+  --color-ring: var(--ring);
+  --color-ring-offset: var(--ring-offset);
+
+  /* font weights */
+  --font-weight-base: var(--base-font-weight);
+  --font-weight-heading: var(--heading-font-weight);
+
+  /* border radius */
+  --rounded: var(--border-radius);
+
+  /* offset */
+  --ring: var(--ring);
+  --ring-offset: var(--ring-offset);
+
+  /* box shadow */
+  --translate-x-box-shadow-x: var(--box-shadow-x);
+  --translate-y-box-shadow-y: var(--box-shadow-y);
+  --translate-x-reverse-box-shadow-x: var(--reverse-box-shadow-x);
+  --translate-y-reverse-box-shadow-y: var(--reverse-box-shadow-y);
+
+  --shadow-shadow: var(--shadow);
+}
+
+:root {
+  --main: #88aaee;
+  --overlay: rgba(0, 0, 0, 0.8);
+
+  --bg: #dfe5f2;
+  --bw: #fff;
+  --blank: #000;
+  --border: #000;
+  --text: #000;
+  --mtext: #000;
+  --ring: #000;
+  --ring-offset: #fff;
+
+  --border-radius: 5px;
+  --box-shadow-x: 4px;
+  --box-shadow-y: 4px;
+  --reverse-box-shadow-x: -4px;
+  --reverse-box-shadow-y: -4px;
+  --base-font-weight: 500;
+  --heading-font-weight: 700;
+
+  --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+}
+
+.dark {
+  --bg: #272933;
+  --bw: #212121;
+  --blank: #fff;
+  --border: #000;
+  --text: #e6e6e6;
+  --mtext: #000;
+  --ring: #fff;
+  --ring-offset: #000;
+
+  --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text font-base;
+  }
+}

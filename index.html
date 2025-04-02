@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crosswords</title>
+
+    <script>
+      const getThemePreference = () => {
+        if (
+          typeof localStorage !== 'undefined' &&
+          localStorage.getItem('theme')
+        ) {
+          try {
+            const json = localStorage.getItem('theme')
+            return JSON.parse(json)
+          } catch (error) {
+            console.error('Error getting theme preference', error?.message)
+            return null
+          }
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
+      }
+
+      const applyTheme = () => {
+        const isDark = getThemePreference() === 'dark'
+        document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+      }
+
+      applyTheme()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
