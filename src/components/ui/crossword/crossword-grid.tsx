@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { useCrossword, getActiveRow, getActiveCol } from '.'
+import { useCrossword, getIsActiveInRow, getIsActiveInCol } from '.'
 
 export function CrosswordGrid({ className }: { className?: string }) {
   const crossword = useCrossword()
@@ -33,6 +33,7 @@ export function CrosswordGrid({ className }: { className?: string }) {
               crossword.setActiveIndex(index)
             }}
             className={cn(
+              'flex items-center justify-center',
               'w-full h-full border-b border-r relative transition-colors bg-white',
               /* Borders */
               (index + 1) % data.cols === 0 && 'border-r-0',
@@ -41,13 +42,13 @@ export function CrosswordGrid({ className }: { className?: string }) {
               /* Active Row */
               crossword.activeIndex &&
                 crossword.activeDirection === 'row' &&
-                getActiveRow(index, data.cols, crossword.activeIndex) &&
+                getIsActiveInRow(index, data.cols, crossword.activeIndex) &&
                 'bg-main',
 
               /* Active Col */
               crossword.activeIndex &&
                 crossword.activeDirection === 'col' &&
-                getActiveCol(index, data.cols, crossword.activeIndex) &&
+                getIsActiveInCol(index, data.cols, crossword.activeIndex) &&
                 'bg-main',
 
               /* Active */
@@ -61,6 +62,10 @@ export function CrosswordGrid({ className }: { className?: string }) {
             <span className="absolute top-1 left-2">
               {data.boxes[index]?.label}
             </span>
+
+            <p className="text-4xl font-semibold uppercase">
+              {crossword.cells[index]?.value}
+            </p>
           </li>
         ))}
       </ul>

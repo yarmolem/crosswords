@@ -1,6 +1,12 @@
 import { useCallback, useMemo, useState } from 'react'
-import { CrosswordContext, IActiveDirection, IActiveIndex } from '.'
-import { IPuzzle } from '@/types'
+
+import {
+  findNextCell,
+  CrosswordContext,
+  type IActiveDirection,
+  type IActiveIndex
+} from '.'
+import type { IPuzzle, IPuzzleCell } from '@/types'
 
 export function CrosswordProvider({
   data,
@@ -9,7 +15,17 @@ export function CrosswordProvider({
   data: IPuzzle
   children: React.ReactNode
 }) {
-  const [activeIndex, setActiveIndex] = useState<IActiveIndex>(null)
+  const [cells, setCells] = useState<Record<number, IPuzzleCell>>({})
+
+  const [activeIndex, setActiveIndex] = useState<IActiveIndex>(() => {
+    const { index } = findNextCell({
+      data,
+      index: 0,
+      direction: 'row'
+    })
+
+    return index
+  })
   const [activeDirection, setActiveDirection] =
     useState<IActiveDirection>('row')
 
@@ -17,18 +33,32 @@ export function CrosswordProvider({
     setActiveDirection((prev) => (prev === 'row' ? 'col' : 'row'))
   }, [])
 
+  const handleCellChange = useCallback((index: number, value: string) => {
+    setCells((prev) => ({ ...prev, [index]: { index, value } }))
+  }, [])
+
   const value = useMemo(
     () => ({
+      cells,
       puzzle: data,
       activeIndex,
-      setActiveIndex,
       activeDirection,
+      setActiveIndex,
       setActiveDirection,
+      handleCellChange,
       toggleActiveDirection
     }),
-    [activeIndex, activeDirection]
+    [
+      data,
+      cells,
+      activeIndex,
+      activeDirection,
+      setActiveIndex,
+      setActiveDirection,
+      handleCellChange,
+      toggleActiveDirection
+    ]
   )
-
   if (!data) {
     return (
       <div className="flex items-center justify-center h-full">

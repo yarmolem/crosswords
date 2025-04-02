@@ -18,3 +18,8 @@ export interface IPuzzle {
     }
   }
 }
+
+export type IPuzzleCell = {
+  index: number
+  value: string
+}

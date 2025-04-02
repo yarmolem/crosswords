@@ -1,4 +1,4 @@
-import { IPuzzle } from '@/types'
+import { IPuzzle, IPuzzleCell } from '@/types'
 import { createContext } from 'react'
 
 export const CROSSWORD_DIRECTIONS = {
@@ -14,17 +14,21 @@ export type IActiveDirection = ICrosswordDirection
 
 export interface CrosswordContextType {
   puzzle: IPuzzle
+  cells: Record<number, IPuzzleCell>
   activeIndex: IActiveIndex
   activeDirection: IActiveDirection
   setActiveIndex: (index: IActiveIndex) => void
   setActiveDirection: (direction: IActiveDirection) => void
   toggleActiveDirection: () => void
+  handleCellChange: (index: number, value: string) => void
 }
 export const CrosswordContext = createContext<CrosswordContextType>({
   puzzle: {} as IPuzzle,
+  cells: {} as Record<number, IPuzzleCell>,
   activeIndex: null,
   activeDirection: 'row',
   setActiveIndex: () => {},
   setActiveDirection: () => {},
-  toggleActiveDirection: () => {}
+  toggleActiveDirection: () => {},
+  handleCellChange: () => {}
 })
