@@ -8,6 +8,7 @@ import {
   CardDescription
 } from '@/components/ui/card'
 import { buttonVariants } from '@/components/ui/button'
+import PageLayout from '@/components/layout/page.layout'
 
 import { cn } from '@/lib/utils'
 import HERO_IMAGE from '@/assets/images/hero.webp'
@@ -15,7 +16,7 @@ import HERO_IMAGE from '@/assets/images/hero.webp'
 export default function HomePage() {
   return (
     <>
-      <div className="flex h-full w-full flex-col flex-1 items-center justify-center">
+      <PageLayout>
         <Card className="w-[90dvw] max-w-sm">
           <CardHeader>
             <CardTitle className="text-center text-4xl">Crossword</CardTitle>
@@ -36,7 +37,7 @@ export default function HomePage() {
             </Link>
           </CardContent>
         </Card>
-      </div>
+      </PageLayout>
     </>
   )
 }
