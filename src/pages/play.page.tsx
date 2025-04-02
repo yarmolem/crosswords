@@ -6,6 +6,7 @@ import {
   CrosswordKeyboard,
   CrosswordProvider
 } from '@/components/ui/crossword'
+import { CrosswordClues } from '@/components/ui/crossword/crossword-clues'
 
 export default function PlayPage() {
   return (
@@ -14,6 +15,7 @@ export default function PlayPage() {
         <CrosswordProvider>
           <Card className="w-[90dvw] max-w-md">
             <CrosswordGrid />
+            <CrosswordClues />
             <CrosswordKeyboard />
           </Card>
         </CrosswordProvider>
