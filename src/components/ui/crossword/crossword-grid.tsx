@@ -1,15 +1,10 @@
 import { cn } from '@/lib/utils'
 import { useCrossword, getActiveRow, getActiveCol } from '.'
-import { basicPuzzle, type Puzzle } from '@/data/basic-puzzle'
 
-export function CrosswordGrid({
-  className,
-  data = basicPuzzle
-}: {
-  className?: string
-  data?: Puzzle
-}) {
+export function CrosswordGrid({ className }: { className?: string }) {
   const crossword = useCrossword()
+
+  const data = crossword.puzzle
 
   return (
     <div className="px-3.5 pt-3.5">

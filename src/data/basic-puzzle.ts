@@ -1,25 +1,6 @@
-export type Puzzle = {
-  title: string
-  description: string
-  rows: number
-  cols: number
-  boxes: {
-    [key: number]: {
-      label?: string
-      disabled?: boolean
-    }
-  }
-  clues: {
-    row: {
-      [key: number]: { label: string }
-    }
-    col: {
-      [key: number]: { label: string }
-    }
-  }
-}
+import type { IPuzzle } from '@/types'
 
-export const basicPuzzle: Puzzle = {
+export const basicPuzzle: IPuzzle = {
   title: 'Basic Puzzle',
   description: 'This is a basic puzzle',
   rows: 5,

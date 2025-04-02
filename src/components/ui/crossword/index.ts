@@ -1,6 +1,7 @@
 export * from './use-crossword'
 export * from './crossword-grid'
 export * from './crossword-utils'
+export * from './crossword-clues'
 export * from './crossword-context'
 export * from './crossword-provider'
 export * from './crossword-keyboard'

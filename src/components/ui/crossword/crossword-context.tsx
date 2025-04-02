@@ -1,3 +1,4 @@
+import { IPuzzle } from '@/types'
 import { createContext } from 'react'
 
 export const CROSSWORD_DIRECTIONS = {
@@ -12,6 +13,7 @@ export type IActiveIndex = number | null
 export type IActiveDirection = ICrosswordDirection
 
 export interface CrosswordContextType {
+  puzzle: IPuzzle
   activeIndex: IActiveIndex
   activeDirection: IActiveDirection
   setActiveIndex: (index: IActiveIndex) => void
@@ -19,6 +21,7 @@ export interface CrosswordContextType {
   toggleActiveDirection: () => void
 }
 export const CrosswordContext = createContext<CrosswordContextType>({
+  puzzle: {} as IPuzzle,
   activeIndex: null,
   activeDirection: 'row',
   setActiveIndex: () => {},
