@@ -35,6 +35,10 @@ export function isCellDisabled({
   return Boolean(data?.boxes?.[index]?.disabled)
 }
 
+export function getTotalCells(data: IPuzzle) {
+  return data.rows * data.cols
+}
+
 export function findNextCell({
   data,
   index,
@@ -143,6 +147,57 @@ export function findFirstAvailableCell({
   }
 }
 
-export function findNextClue() {}
+export function findNextClue({
+  data,
+  index,
+  direction
+}: {
+  data: IPuzzle
+  index: number
+  direction: IActiveDirection
+}) {
+  const totalCells = getTotalCells(data)
+
+  if (direction === 'row') {
+    /* 
+      1. Find the row of the current cell
+      2. Add 1 to the row
+      3. Find the first available cell in the new row
+      4. Return the index of the first available cell
+      5. if there is no first available cell, repeat the process with the next row
+    */
+    const row = getCellRow(index, data.cols)
+    const nextRow = row + 1
+    const nextIndex = nextRow * data.cols
+
+    if (nextIndex >= totalCells) {
+      return findFirstAvailableCell({ index: 0, direction: 'col', data })
+    }
+
+    return findFirstAvailableCell({ index: nextIndex, direction, data })
+  }
+
+  const col = getCellCol(index, data.cols)
+
+  if (col + 1 >= data.cols) {
+    return findFirstAvailableCell({ index: 0, direction: 'row', data })
+  }
+
+  const nextCol = col + 1
+  const nextIndex = nextCol
+
+  if (nextIndex >= totalCells) {
+    return findFirstAvailableCell({ index: 0, direction: 'row', data })
+  }
+
+  if (isCellDisabled({ data, index: nextIndex })) {
+    return findNextCell({ index: nextIndex, direction, data })
+  }
+
+  return {
+    index: nextIndex,
+    direction
+  }
+}
 
 export function findPreviousClue() {}

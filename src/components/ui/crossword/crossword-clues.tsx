@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
 import { Button } from '../button'
-import { getCellCol, getCellRow, useCrossword } from '.'
+import { findNextClue, getCellCol, getCellRow, useCrossword } from '.'
 
 export function CrosswordClues() {
   const crossword = useCrossword()
@@ -51,14 +51,14 @@ export function CrosswordClues() {
           onClick={() => {
             if (crossword.activeIndex === null) return
 
-            /*             const { index, direction } = findNextClue({
+            const { index, direction } = findNextClue({
               data: crossword.puzzle,
               index: crossword.activeIndex,
               direction: crossword.activeDirection
             })
 
             crossword.setActiveIndex(index)
-            crossword.setActiveDirection(direction) */
+            crossword.setActiveDirection(direction)
           }}
         >
           <ChevronRightIcon className="size-6" />
