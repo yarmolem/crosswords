@@ -31,7 +31,7 @@ export function CrosswordDialogSuccess() {
 
           <DialogFooter>
             <DialogAction asChild>
-              <Link to="/">Ir al home</Link>
+              <Link to="/">Go back to home</Link>
             </DialogAction>
           </DialogFooter>
         </DialogContent>

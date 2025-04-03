@@ -13,7 +13,7 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: '/play',
+        path: '/play/:slug',
         hydrateFallbackElement: <LoadingPage />,
         lazy: async () => {
           const { default: PlayPage } = await import('@/pages/play.page')

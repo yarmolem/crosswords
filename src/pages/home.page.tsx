@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router'
 
 import {
@@ -7,13 +8,25 @@ import {
   CardContent,
   CardDescription
 } from '@/components/ui/card'
+import {
+  Select,
+  SelectItem,
+  SelectValue,
+  SelectGroup,
+  SelectContent,
+  SelectTrigger
+} from '@/components/ui/select'
 import { buttonVariants } from '@/components/ui/button'
 import PageLayout from '@/components/layout/page.layout'
 
 import { cn } from '@/lib/utils'
+import { puzzles } from '@/data'
+import { basicPuzzle } from '@/data/basic-puzzle'
 import HERO_IMAGE from '@/assets/images/hero.webp'
 
 export default function HomePage() {
+  const [puzzle, setPuzzle] = useState(basicPuzzle)
+
   return (
     <>
       <PageLayout>
@@ -28,9 +41,29 @@ export default function HomePage() {
 
           <img src={HERO_IMAGE} alt="Hero" className="w-full pb-6" />
 
-          <CardContent>
+          <CardContent className="space-y-4">
+            <Select
+              value={puzzle.slug}
+              onValueChange={(value) => {
+                setPuzzle(puzzles[value as string])
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select a puzzle" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {Object.values(puzzles).map((puzzle) => (
+                    <SelectItem key={puzzle.slug} value={puzzle.slug}>
+                      {puzzle.title}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+
             <Link
-              to="/play"
+              to={`/play/${puzzle.slug}`}
               className={cn(buttonVariants({ variant: 'neutral' }), 'w-full')}
             >
               Play
