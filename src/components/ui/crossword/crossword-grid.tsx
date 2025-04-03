@@ -22,8 +22,8 @@ export function CrosswordGrid({ className }: { className?: string }) {
         {Array.from({ length: data.rows * data.cols }).map((_, index) => (
           <li
             key={index}
-            tabIndex={index}
             onClick={() => {
+              if (crossword.isSolved) return
               if (data.boxes[index]?.disabled) return
               if (crossword.activeIndex === index) {
                 crossword.toggleActiveDirection()
@@ -53,6 +53,9 @@ export function CrosswordGrid({ className }: { className?: string }) {
 
               /* Active */
               crossword.activeIndex === index && 'bg-yellow-500',
+
+              /* Solved */
+              crossword.isSolved && 'bg-green-500',
 
               /* Disabled */
               data.boxes[index]?.disabled &&

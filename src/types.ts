@@ -18,6 +18,7 @@ export interface IPuzzle {
       [key: number]: { label: string }
     }
   }
+  solution: string[][]
 }
 
 export type IPuzzleCell = {

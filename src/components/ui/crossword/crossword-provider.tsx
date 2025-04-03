@@ -17,6 +17,7 @@ export function CrosswordProvider({
   data: IPuzzle
   children: React.ReactNode
 }) {
+  const [isSolved, setIsSolved] = useState(false)
   const [cells, setCells] = useState<Record<number, IPuzzleCell>>({})
   const [direction, setDirection] = useState<IActiveDirection>('row')
 
@@ -45,9 +46,11 @@ export function CrosswordProvider({
   const value = useMemo(
     () => ({
       cells,
+      isSolved,
       puzzle: data,
       activeIndex: index,
       activeDirection: direction,
+      setIsSolved,
       handleCellChange,
       setActiveIndex: setIndex,
       setActiveDirection: setDirection,
@@ -58,6 +61,8 @@ export function CrosswordProvider({
       cells,
       index,
       direction,
+      isSolved,
+      setIsSolved,
       setIndex,
       setDirection,
       handleCellChange,

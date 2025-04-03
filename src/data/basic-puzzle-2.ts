@@ -40,5 +40,12 @@ export const basicPuzzleTwo: IPuzzle = {
     20: { disabled: true },
     21: { disabled: true },
     22: { label: '9' }
-  }
+  },
+  solution: [
+    ['J', 'U', 'S', 'T', '#'],
+    ['A', 'S', 'I', 'A', '#'],
+    ['B', 'E', 'N', 'C', 'H'],
+    ['#', '#', 'C', 'O', 'O'],
+    ['#', '#', 'E', 'S', 'E']
+  ]
 }

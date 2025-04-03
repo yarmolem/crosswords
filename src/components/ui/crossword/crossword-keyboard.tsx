@@ -1,6 +1,6 @@
 import { Loader } from 'lucide-react'
 import { lazy, Suspense } from 'react'
-import { findNextCell, useCrossword } from '.'
+import { checkSolution, findNextCell, useCrossword } from '.'
 
 const Keyboard = lazy(() =>
   import('@/components/ui/keyboard').then((module) => ({
@@ -21,6 +21,7 @@ export function CrosswordKeyboard() {
     >
       <Keyboard
         onKeyPress={(button) => {
+          if (crossword.isSolved) return
           if (crossword.activeIndex === null) return
 
           const isRemoving = button === '{bksp}'
@@ -29,6 +30,19 @@ export function CrosswordKeyboard() {
             crossword.activeIndex,
             isRemoving ? '' : button
           )
+
+          const optimisticCells = {
+            ...crossword.cells,
+            [crossword.activeIndex]: {
+              index: crossword.activeIndex,
+              value: isRemoving ? '' : button
+            }
+          }
+
+          if (checkSolution(crossword.puzzle, optimisticCells)) {
+            crossword.setIsSolved(true)
+            return
+          }
 
           if (isRemoving) return
 

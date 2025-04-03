@@ -14,9 +14,11 @@ export type IActiveDirection = ICrosswordDirection
 
 export interface CrosswordContextType {
   puzzle: IPuzzle
+  isSolved: boolean
   cells: Record<number, IPuzzleCell>
   activeIndex: IActiveIndex
   activeDirection: IActiveDirection
+  setIsSolved: (isSolved: boolean) => void
   setActiveIndex: (index: IActiveIndex) => void
   setActiveDirection: (direction: IActiveDirection) => void
   toggleActiveDirection: () => void
@@ -24,9 +26,11 @@ export interface CrosswordContextType {
 }
 export const CrosswordContext = createContext<CrosswordContextType>({
   puzzle: {} as IPuzzle,
+  isSolved: false,
   cells: {} as Record<number, IPuzzleCell>,
   activeIndex: null,
   activeDirection: 'row',
+  setIsSolved: () => {},
   setActiveIndex: () => {},
   setActiveDirection: () => {},
   toggleActiveDirection: () => {},

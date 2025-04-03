@@ -23,44 +23,25 @@ export const basicPuzzle: IPuzzle = {
     ]
   },
   boxes: {
-    0: {
-      disabled: true
-    },
-    1: {
-      disabled: true
-    },
-    2: {
-      label: '1'
-    },
-    3: {
-      label: '2'
-    },
-    4: {
-      label: '3'
-    },
-    5: {
-      disabled: true
-    },
-    6: {
-      label: '4'
-    },
-    10: {
-      label: '5'
-    },
-    15: {
-      label: '6'
-    },
-    19: {
-      disabled: true
-    },
-    20: {
-      label: '7'
-    },
-    23: {
-      disabled: true
-    },
-    24: {
-      disabled: true
-    }
-  }
+    0: { disabled: true },
+    1: { disabled: true },
+    2: { label: '1' },
+    3: { label: '2' },
+    4: { label: '3' },
+    5: { disabled: true },
+    6: { label: '4' },
+    10: { label: '5' },
+    15: { label: '6' },
+    19: { disabled: true },
+    20: { label: '7' },
+    23: { disabled: true },
+    24: { disabled: true }
+  },
+  solution: [
+    ['#', '#', 'C', 'A', 'T'],
+    ['#', 'S', 'O', 'L', 'O'],
+    ['P', 'A', 'U', 'S', 'E'],
+    ['A', 'F', 'R', 'O', '#'],
+    ['W', 'E', 'T', '#', '#']
+  ]
 }

@@ -1,4 +1,4 @@
-import { IPuzzle } from '@/types'
+import { IPuzzle, IPuzzleCell } from '@/types'
 import { IActiveDirection } from './crossword-context'
 
 export function getCellRow(index: number, cols: number) {
@@ -241,4 +241,28 @@ export function findPreviousClue({
     index: nextIndex,
     direction
   }
+}
+
+export function formatSolution(solution: string[][]) {
+  return solution.flatMap((row) => row.join('')).join('')
+}
+
+export function formatCells(data: IPuzzle, cells: Record<number, IPuzzleCell>) {
+  const arr = new Array(data.rows * data.cols).fill('#')
+
+  Object.values(cells).forEach((cell) => {
+    arr[cell.index] = cell.value.toUpperCase()
+  })
+
+  return arr.join('')
+}
+
+export function checkSolution(
+  data: IPuzzle,
+  cells: Record<number, IPuzzleCell>
+) {
+  const formattedCells = formatCells(data, cells)
+  const formattedSolution = formatSolution(data.solution)
+
+  return formattedCells === formattedSolution
 }

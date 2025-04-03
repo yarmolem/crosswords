@@ -10,14 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-alert-dialog": "^1.1.6",
     "@tailwindcss/vite": "^4.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.486.0",
     "react": "^19.0.0",
+    "react-confetti": "^6.4.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.4.1",
     "react-simple-keyboard": "^3.8.58",
+    "react-use": "^17.6.0",
     "tailwind-merge": "^3.1.0",
     "tailwindcss": "^4.1.0",
     "zustand": "^5.0.3"
