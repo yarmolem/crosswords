@@ -1,11 +1,13 @@
 import { useCallback, useMemo, useState } from 'react'
 
 import {
-  findNextCell,
+  isCellDisabled,
   CrosswordContext,
-  type IActiveDirection,
-  type IActiveIndex
+  findFirstAvailableCell,
+  type IActiveIndex,
+  type IActiveDirection
 } from '.'
+
 import type { IPuzzle, IPuzzleCell } from '@/types'
 
 export function CrosswordProvider({
@@ -16,21 +18,24 @@ export function CrosswordProvider({
   children: React.ReactNode
 }) {
   const [cells, setCells] = useState<Record<number, IPuzzleCell>>({})
+  const [direction, setDirection] = useState<IActiveDirection>('row')
 
-  const [activeIndex, setActiveIndex] = useState<IActiveIndex>(() => {
-    const { index } = findNextCell({
-      data,
-      index: 0,
-      direction: 'row'
-    })
+  const [index, setIndex] = useState<IActiveIndex>(() => {
+    if (isCellDisabled({ data, index: 0 })) {
+      const { index } = findFirstAvailableCell({
+        data,
+        index: 0,
+        direction: 'row'
+      })
 
-    return index
+      return index
+    }
+
+    return 0
   })
-  const [activeDirection, setActiveDirection] =
-    useState<IActiveDirection>('row')
 
-  const toggleActiveDirection = useCallback(() => {
-    setActiveDirection((prev) => (prev === 'row' ? 'col' : 'row'))
+  const toggleDirection = useCallback(() => {
+    setDirection((prev) => (prev === 'row' ? 'col' : 'row'))
   }, [])
 
   const handleCellChange = useCallback((index: number, value: string) => {
@@ -41,22 +46,22 @@ export function CrosswordProvider({
     () => ({
       cells,
       puzzle: data,
-      activeIndex,
-      activeDirection,
-      setActiveIndex,
-      setActiveDirection,
+      activeIndex: index,
+      activeDirection: direction,
       handleCellChange,
-      toggleActiveDirection
+      setActiveIndex: setIndex,
+      setActiveDirection: setDirection,
+      toggleActiveDirection: toggleDirection
     }),
     [
       data,
       cells,
-      activeIndex,
-      activeDirection,
-      setActiveIndex,
-      setActiveDirection,
+      index,
+      direction,
+      setIndex,
+      setDirection,
       handleCellChange,
-      toggleActiveDirection
+      toggleDirection
     ]
   )
   if (!data) {

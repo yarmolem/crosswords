@@ -40,13 +40,13 @@ export function CrosswordGrid({ className }: { className?: string }) {
               index >= data.cols * (data.rows - 1) && 'border-b-0',
 
               /* Active Row */
-              crossword.activeIndex &&
+              crossword.activeIndex !== null &&
                 crossword.activeDirection === 'row' &&
                 getIsActiveInRow(index, data.cols, crossword.activeIndex) &&
                 'bg-main',
 
               /* Active Col */
-              crossword.activeIndex &&
+              crossword.activeIndex !== null &&
                 crossword.activeDirection === 'col' &&
                 getIsActiveInCol(index, data.cols, crossword.activeIndex) &&
                 'bg-main',

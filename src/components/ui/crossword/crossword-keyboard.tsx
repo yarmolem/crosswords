@@ -1,6 +1,6 @@
 import { Loader } from 'lucide-react'
 import { lazy, Suspense } from 'react'
-import { useCrossword } from './use-crossword'
+import { findNextCell, useCrossword } from '.'
 
 const Keyboard = lazy(() =>
   import('@/components/ui/keyboard').then((module) => ({
@@ -21,14 +21,25 @@ export function CrosswordKeyboard() {
     >
       <Keyboard
         onKeyPress={(button) => {
-          if (!crossword.activeIndex) return
+          if (crossword.activeIndex === null) return
+
+          const isRemoving = button === '{bksp}'
 
           crossword.handleCellChange(
             crossword.activeIndex,
-            button === '{bksp}' ? '' : button
+            isRemoving ? '' : button
           )
 
-          crossword.setNextCellByDirection()
+          if (isRemoving) return
+
+          const { index, direction } = findNextCell({
+            data: crossword.puzzle,
+            index: crossword.activeIndex,
+            direction: crossword.activeDirection
+          })
+
+          crossword.setActiveIndex(index)
+          crossword.setActiveDirection(direction)
         }}
       />
     </Suspense>
