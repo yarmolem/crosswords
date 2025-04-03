@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "analyze": "npx vite-bundle-visualizer"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.6",
@@ -23,7 +24,8 @@
     "react-simple-keyboard": "^3.8.58",
     "react-use": "^17.6.0",
     "tailwind-merge": "^3.1.0",
-    "tailwindcss": "^4.1.0"
+    "tailwindcss": "^4.1.0",
+    "vite-bundle-visualizer": "^1.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
