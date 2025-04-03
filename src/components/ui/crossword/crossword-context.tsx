@@ -25,8 +25,8 @@ export interface CrosswordContextType {
   handleCellChange: (index: number, value: string) => void
 }
 export const CrosswordContext = createContext<CrosswordContextType>({
-  puzzle: {} as IPuzzle,
   isSolved: false,
+  puzzle: {} as IPuzzle,
   cells: {} as Record<number, IPuzzleCell>,
   activeIndex: null,
   activeDirection: 'row',

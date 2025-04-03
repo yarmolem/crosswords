@@ -6,7 +6,8 @@ import {
   CrosswordKeyboard,
   CrosswordProvider,
   CrosswordConfetti,
-  CrosswordDialogSuccess
+  CrosswordDialogSuccess,
+  CrosswordDialogFinish
 } from '@/components/ui/crossword'
 import { Card } from '@/components/ui/card'
 import PageLayout from '@/components/layout/page.layout'
@@ -14,10 +15,11 @@ import PageLayout from '@/components/layout/page.layout'
 import { cn } from '@/lib/utils'
 import { puzzles } from '@/data'
 import { buttonVariants } from '@/components/ui/button'
+import { TimerProvider } from '@/components/shared/timer'
+import { CrosswordCountDown } from '@/components/ui/crossword/crissword-count-down'
 
 export default function PlayPage() {
   const { slug } = useParams()
-
   const puzzle = puzzles[slug as string]
 
   if (!puzzle) {
@@ -34,15 +36,19 @@ export default function PlayPage() {
   return (
     <>
       <PageLayout>
-        <CrosswordProvider data={puzzle}>
-          <Card className="w-[90dvw] max-w-md">
-            <CrosswordGrid />
-            <CrosswordClues />
-            <CrosswordKeyboard />
-            <CrosswordConfetti />
-            <CrosswordDialogSuccess />
-          </Card>
-        </CrosswordProvider>
+        <TimerProvider initialValue={puzzle.duration}>
+          <CrosswordProvider data={puzzle}>
+            <Card className="w-[90dvw] max-w-md">
+              <CrosswordCountDown />
+              <CrosswordGrid />
+              <CrosswordClues />
+              <CrosswordKeyboard />
+              <CrosswordConfetti />
+              <CrosswordDialogFinish />
+              <CrosswordDialogSuccess />
+            </Card>
+          </CrosswordProvider>
+        </TimerProvider>
       </PageLayout>
     </>
   )

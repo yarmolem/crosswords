@@ -3,6 +3,7 @@ import type { IPuzzle } from '@/types'
 export const basicPuzzle: IPuzzle = {
   slug: 'basic-puzzle',
   title: 'Basic Puzzle',
+  duration: 60,
   description: 'This is a basic puzzle',
   rows: 5,
   cols: 5,

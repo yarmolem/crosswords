@@ -5,6 +5,7 @@ export function CrosswordGrid({ className }: { className?: string }) {
   const crossword = useCrossword()
 
   const data = crossword.puzzle
+  console.log('RENDER')
 
   return (
     <div className="px-3.5 pt-3.5">
