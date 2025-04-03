@@ -39,7 +39,15 @@ export default function HomePage() {
             </CardDescription>
           </CardHeader>
 
-          <img src={HERO_IMAGE} alt="Hero" className="w-full pb-6" />
+          <div className="w-full aspect-[16/12] overflow-hidden pb-6">
+            <img
+              alt="Hero"
+              width={380}
+              height={277}
+              src={HERO_IMAGE}
+              className="w-full h-full object-contain"
+            />
+          </div>
 
           <CardContent className="space-y-4">
             <Select
