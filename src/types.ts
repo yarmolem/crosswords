@@ -1,4 +1,5 @@
 export interface IPuzzle {
+  slug: string
   title: string
   description: string
   rows: number

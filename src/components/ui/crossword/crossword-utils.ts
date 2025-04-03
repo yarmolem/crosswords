@@ -120,7 +120,7 @@ export function findFirstAvailableCell({
     }
   } else {
     let col = 0
-    let idx = 0
+    let idx = index
 
     while (col < data.cols) {
       if (isCellDisabled({ data, index: idx })) {
@@ -159,13 +159,6 @@ export function findNextClue({
   const totalCells = getTotalCells(data)
 
   if (direction === 'row') {
-    /* 
-      1. Find the row of the current cell
-      2. Add 1 to the row
-      3. Find the first available cell in the new row
-      4. Return the index of the first available cell
-      5. if there is no first available cell, repeat the process with the next row
-    */
     const row = getCellRow(index, data.cols)
     const nextRow = row + 1
     const nextIndex = nextRow * data.cols
@@ -186,8 +179,58 @@ export function findNextClue({
   const nextCol = col + 1
   const nextIndex = nextCol
 
-  if (nextIndex >= totalCells) {
-    return findFirstAvailableCell({ index: 0, direction: 'row', data })
+  if (isCellDisabled({ data, index: nextIndex })) {
+    return findNextCell({ index: nextIndex, direction, data })
+  }
+
+  return {
+    index: nextIndex,
+    direction
+  }
+}
+
+export function findPreviousClue({
+  data,
+  index,
+  direction
+}: {
+  data: IPuzzle
+  index: number
+  direction: IActiveDirection
+}) {
+  if (direction === 'row') {
+    const row = getCellRow(index, data.cols)
+    const nextRow = row - 1
+    const nextIndex = nextRow * data.cols
+
+    if (nextRow < 0) {
+      return findFirstAvailableCell({
+        index: data.cols - 1,
+        direction: 'col',
+        data
+      })
+    }
+
+    if (isCellDisabled({ data, index: nextIndex })) {
+      return findNextCell({ index: nextIndex, direction, data })
+    }
+
+    return {
+      index: nextIndex,
+      direction
+    }
+  }
+
+  const col = getCellCol(index, data.cols)
+  const nextCol = col - 1
+  const nextIndex = nextCol
+
+  if (nextIndex < 0) {
+    return findFirstAvailableCell({
+      index: (data.rows - 1) * data.cols,
+      direction: 'row',
+      data
+    })
   }
 
   if (isCellDisabled({ data, index: nextIndex })) {
@@ -199,5 +242,3 @@ export function findNextClue({
     direction
   }
 }
-
-export function findPreviousClue() {}

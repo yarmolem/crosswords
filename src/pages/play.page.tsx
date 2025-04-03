@@ -7,13 +7,13 @@ import {
   CrosswordProvider
 } from '@/components/ui/crossword'
 import { CrosswordClues } from '@/components/ui/crossword/crossword-clues'
-import { basicPuzzleTwo } from '@/data/basic-puzzle-2'
+import { basicPuzzle } from '@/data/basic-puzzle'
 
 export default function PlayPage() {
   return (
     <>
       <PageLayout>
-        <CrosswordProvider data={basicPuzzleTwo}>
+        <CrosswordProvider data={basicPuzzle}>
           <Card className="w-[90dvw] max-w-md">
             <CrosswordGrid />
             <CrosswordClues />
