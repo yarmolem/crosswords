@@ -23,8 +23,7 @@
     "react-simple-keyboard": "^3.8.58",
     "react-use": "^17.6.0",
     "tailwind-merge": "^3.1.0",
-    "tailwindcss": "^4.1.0",
-    "zustand": "^5.0.3"
+    "tailwindcss": "^4.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

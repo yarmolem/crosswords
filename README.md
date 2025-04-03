@@ -1,54 +1,114 @@
-# React + TypeScript + Vite
+# Mini Crosswords App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive mini crossword puzzle application built with React and TypeScript. This project demonstrates clean architecture, component reusability, and a focus on user experience.
 
-Currently, two official plugins are available:
+![Mini Crosswords App](src/assets/images/hero.webp)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Interactive crossword puzzle grid with responsive design
+- Multiple puzzles with different difficulty levels
+- Real-time validation of answers
+- Keyboard input support for desktop users
+- On-screen keyboard for mobile users
+- Clues navigation for both across and down directions
+- Celebration animation on puzzle completion
+- Clean, modern UI built with Tailwind CSS and Radix UI
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technology Stack
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Frontend Framework**: React 19
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI
+- **Build Tool**: Vite
+- **Package Manager**: npm
+
+## Project Structure
+
+```
+src/
+├── assets/         # Static assets like images
+├── components/     # UI components
+│   ├── layout/     # Layout components
+│   └── ui/         # UI components
+│       ├── button/
+│       ├── card/
+│       ├── crossword/  # Crossword specific components
+│       ├── dialog/
+│       ├── keyboard/
+│       └── select/
+├── data/           # Puzzle data
+├── lib/            # Utility functions
+├── pages/          # Page components
+├── routers/        # Routing configuration
+└── styles/         # Global styles
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Crossword Components
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The crossword functionality is divided into several components for better separation of concerns:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+- `CrosswordGrid`: Renders the crossword puzzle grid
+- `CrosswordClues`: Displays the across and down clues
+- `CrosswordKeyboard`: Provides an on-screen keyboard for input
+- `CrosswordProvider`: Manages the state of the crossword puzzle
+- `CrosswordConfetti`: Shows celebration animation on puzzle completion
+- `CrosswordDialogSuccess`: Displays a success dialog when the puzzle is completed
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm (v7 or higher)
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/yarmolem/crossword.git
+cd crossword
 ```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Start the development server
+
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+This will generate a production-ready build in the `dist` directory.
+
+## Project Highlights
+
+- **Modular Architecture**: Components are designed to be reusable and maintainable
+- **Responsive Design**: Works well on both desktop and mobile devices
+- **Type Safety**: Full TypeScript implementation for better code quality
+- **Modern UI**: Clean and intuitive user interface
+- **Performance Optimized**: Fast loading and rendering
+
+## Future Improvements
+
+- Add more puzzles with varying difficulty levels
+- Implement user accounts to track progress
+- Support for theme customization
+- Implement puzzle generation algorithm
+
+## License
+
+MIT
